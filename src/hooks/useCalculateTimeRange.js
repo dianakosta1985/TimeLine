@@ -18,14 +18,14 @@ import { useMemo } from "react";
     const stack = [];
 
     for(let i=0; i< arr.length; i++ ){ // O(n)
-        
+        debugger;
         if(i>0 && start >=arr[i-1].end && end <= arr[i].start  && arr[i-1].level === arr[i].level){
             stack.push({"index": i, "level":arr[i].level});
-            continue;
+            break;
 
         }else if(i>0 && arr[i-1].level !== arr[i].level && start >= arr[i-1].end){
             stack.unshift({"index": i, "level":arr[i-1].level});
-            continue;     
+            break;     
         }else if((start <= arr[i].end && start >= arr[i].start) || (end >= arr[i].start && end <= arr[i].end)
                 || (start <= arr[i].start && end >= arr[i].start) || (start >= arr[i].start && start <= arr[i].end)){
             stack.push({"index": i, "level":arr[i].level + 1});
